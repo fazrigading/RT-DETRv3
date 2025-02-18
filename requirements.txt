@@ -12,6 +12,10 @@ pycocotools
 setuptools
 Pillow
 
+# Google Colab: for ipython 7.34.0 and gensim 4.3.3
+jedi>=0.16
+scipy<1.14.0,>=1.7.0
+
 # for MOT evaluation and inference
 lapx
 motmetrics
@@ -22,3 +26,6 @@ pyclipper
 
 # for culane data augumetation
 imgaug>=0.4.0
+
+# mandatory
+paddlepaddle-gpu
