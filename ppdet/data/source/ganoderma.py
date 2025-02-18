@@ -28,13 +28,13 @@ from ppdet.utils.logger import setup_logger
 logger = setup_logger(__name__)
 
 __all__ = [
-    'COCODataSet', 'SlicedCOCODataSet', 'SemiCOCODataSet', 'COCODetDataset', 'COCOInstSegDataset'
+    'GanoDataSet', 'SlicedGanoDataSet', 'SemiGanoDataSet', 'COCODetDataset', 'COCOInstSegDataset'
 ]
 
 
 @register
 @serializable
-class COCODataSet(DetDataset):
+class GanoDataSet(DetDataset):
     """
     Load dataset with COCO format.
 
@@ -63,7 +63,7 @@ class COCODataSet(DetDataset):
                  allow_empty=False,
                  empty_ratio=1.,
                  repeat=1):
-        super(COCODataSet, self).__init__(
+        super(GanoDataSet, self).__init__(
             dataset_dir,
             image_dir,
             anno_path,
@@ -253,8 +253,8 @@ class COCODataSet(DetDataset):
 
 @register
 @serializable
-class SlicedCOCODataSet(COCODataSet):
-    """Sliced COCODataSet"""
+class SlicedGanoDataSet(GanoDataSet):
+    """Sliced GanoDataSet"""
 
     def __init__(
             self,
@@ -269,7 +269,7 @@ class SlicedCOCODataSet(COCODataSet):
             repeat=1,
             sliced_size=[640, 640],
             overlap_ratio=[0.25, 0.25], ):
-        super(SlicedCOCODataSet, self).__init__(
+        super(SlicedGanoDataSet, self).__init__(
             dataset_dir=dataset_dir,
             image_dir=image_dir,
             anno_path=anno_path,
@@ -376,8 +376,8 @@ class SlicedCOCODataSet(COCODataSet):
 
 @register
 @serializable
-class SemiCOCODataSet(COCODataSet):
-    """Semi-COCODataSet used for supervised and unsupervised dataSet"""
+class SemiGanoDataSet(GanoDataSet):
+    """Semi-GanoDataSet used for supervised and unsupervised dataSet"""
 
     def __init__(self,
                  dataset_dir=None,
@@ -390,7 +390,7 @@ class SemiCOCODataSet(COCODataSet):
                  empty_ratio=1.,
                  repeat=1,
                  supervised=True):
-        super(SemiCOCODataSet, self).__init__(
+        super(SemiGanoDataSet, self).__init__(
             dataset_dir, image_dir, anno_path, data_fields, sample_num,
             load_crowd, allow_empty, empty_ratio, repeat)
         self.supervised = supervised
@@ -594,12 +594,12 @@ class SemiCOCODataSet(COCODataSet):
 # for PaddleX
 @register
 @serializable
-class COCODetDataset(COCODataSet):
+class COCODetDataset(GanoDataSet):
     pass
 
 
 # for PaddleX
 @register
 @serializable
-class COCOInstSegDataset(COCODataSet):
+class COCOInstSegDataset(GanoDataSet):
     pass
