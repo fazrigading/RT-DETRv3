@@ -21,7 +21,6 @@ from . import mot
 from . import sniper_coco
 from . import culane
 from . import lvis
-from . import ganoderma
 
 from .coco import *
 from .voc import *
@@ -34,4 +33,3 @@ from .dataset import ImageFolder
 from .pose3d_cmb import *
 from .culane import *
 from .lvis import *
-from .ganoderma import *
