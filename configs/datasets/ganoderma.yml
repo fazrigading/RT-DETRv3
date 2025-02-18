@@ -5,18 +5,18 @@ TrainDataset:
   name: Ganoderma
   image_dir: train
   anno_path: _annotations.coco.json
-  dataset_dir: ../datasets/Ganoderma
+  dataset_dir: datasets/Ganoderma
   data_fields: ['image', 'gt_bbox', 'gt_class', 'is_crowd']
 
 EvalDataset:
   name: Ganoderma
   image_dir: valid
   anno_path: _annotations.coco.json
-  dataset_dir: ../datasets/Ganoderma
+  dataset_dir: datasets/Ganoderma
   allow_empty: true
 
 TestDataset:
   name: Ganoderma
   image_dir: test
   anno_path: _annotations.coco.json # also support txt (like VOC's label_list.txt)
-  dataset_dir: ../datasets/Ganoderma # dataset/coco # if set, anno_path will be 'dataset_dir/anno_path'
+  dataset_dir: datasets/Ganoderma # dataset/coco # if set, anno_path will be 'dataset_dir/anno_path'
