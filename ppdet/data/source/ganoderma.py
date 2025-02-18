@@ -28,7 +28,7 @@ from ppdet.utils.logger import setup_logger
 logger = setup_logger(__name__)
 
 __all__ = [
-    'GanoDataSet', 'SlicedGanoDataSet', 'SemiGanoDataSet', 'COCODetDataset', 'COCOInstSegDataset'
+    'GanoDataSet', 'SlicedGanoDataSet', 'SemiGanoDataSet', 'GanoDetDataset', 'GanoInstSegDataset'
 ]
 
 
@@ -594,12 +594,12 @@ class SemiGanoDataSet(GanoDataSet):
 # for PaddleX
 @register
 @serializable
-class COCODetDataset(GanoDataSet):
+class GanoDetDataset(GanoDataSet):
     pass
 
 
 # for PaddleX
 @register
 @serializable
-class COCOInstSegDataset(GanoDataSet):
+class GanoInstSegDataset(GanoDataSet):
     pass
