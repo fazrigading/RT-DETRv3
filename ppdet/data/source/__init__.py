@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from . import ganoderma
 from . import coco
 from . import voc
 from . import widerface
@@ -22,8 +21,8 @@ from . import mot
 from . import sniper_coco
 from . import culane
 from . import lvis
+from . import ganoderma
 
-from .ganoderma import *
 from .coco import *
 from .voc import *
 from .widerface import *
@@ -35,3 +34,4 @@ from .dataset import ImageFolder
 from .pose3d_cmb import *
 from .culane import *
 from .lvis import *
+from .ganoderma import *
