@@ -13,7 +13,8 @@ log_iter: 200
 o2m_branch: True
 num_queries_o2m: 450
 
-pretrain_weights: https://paddledet.bj.bcebos.com/models/pretrained/ResNet18_vd_pretrained.pdparams
+# pretrain_weights: https://paddledet.bj.bcebos.com/models/pretrained/ResNet18_vd_pretrained.pdparams
+pretrain_weights: https://pan.baidu.com/s/1s7lyT6_fHmczoegQZXdX-w?pwd=54jp
 
 RTDETRV3:
   backbone: ResNet
