@@ -197,7 +197,9 @@ def run(FLAGS, cfg):
     # get inference images
     if FLAGS.do_eval:
         dataset = create('TestDataset')()
-        images = dataset.get_images()
+        # images = dataset.get_images()
+        # FIX: Manually extract image paths from the dataset's internal records (roidbs)
+        images = [v['im_file'] for v in dataset.roidbs]
     else:
         images = get_test_images(FLAGS.infer_dir, FLAGS.infer_img, FLAGS.infer_list)
 
