@@ -132,26 +132,46 @@ def cocoapi_eval(jsonfile,
             from terminaltables import AsciiTable
         except Exception as e:
             logger.error(
-                'terminaltables not found, plaese install terminaltables. '
+                'terminaltables not found, please install terminaltables. '
                 'for example: `pip install terminaltables`.')
             raise e
+        
         precisions = coco_eval.eval['precision']
         cat_ids = coco_gt.getCatIds()
-        # precision: (iou, recall, cls, area range, max dets)
+        # precision shape: (iou, recall, cls, area range, max dets)
         assert len(cat_ids) == precisions.shape[2]
+        
         results_per_category = []
         for idx, catId in enumerate(cat_ids):
             # area range index 0: all area ranges
             # max dets index -1: typically 100 per image
             nm = coco_gt.loadCats(catId)[0]
-            precision = precisions[:, :, idx, 0, -1]
+
+            # --- Calculate AP @ 0.5:0.95 (Standard) ---
+            precision = precisions[:, :, idx, 0, -1] # Slice ':' takes all IoUs
             precision = precision[precision > -1]
             if precision.size:
                 ap = np.mean(precision)
             else:
                 ap = float('nan')
+
+            # --- Calculate AP @ 0.5 (New) ---
+            # Index 0 corresponds to IoU=0.50 in the standard COCO linspace
+            precision_50 = precisions[0, :, idx, 0, -1] 
+            precision_50 = precision_50[precision_50 > -1]
+            if precision_50.size:
+                ap_50 = np.mean(precision_50)
+            else:
+                ap_50 = float('nan')
+
+            # Append Name, AP, and AP50
             results_per_category.append(
-                (str(nm["name"]), '{:0.3f}'.format(float(ap))))
+                (str(nm["name"]), 
+                 '{:0.3f}'.format(float(ap)), 
+                 '{:0.3f}'.format(float(ap_50)))
+            )
+
+            # PR Curve logic (unchanged)
             pr_array = precisions[0, :, idx, 0, 2]
             recall_array = np.arange(0.0, 1.01, 0.01)
             draw_pr_curve(
@@ -160,11 +180,19 @@ def cocoapi_eval(jsonfile,
                 out_dir=style + '_pr_curve',
                 file_name='{}_precision_recall_curve.jpg'.format(nm["name"]))
 
-        num_columns = min(6, len(results_per_category) * 2)
+        # --- Update Table formatting for 3 columns (Cat, AP, AP50) ---
+        # We calculate columns based on groups of 3 now. 
+        # min(6, ...) ensures we don't exceed terminal width (allows 2 classes per row)
+        num_columns = min(6, len(results_per_category) * 3)
+        
         results_flatten = list(itertools.chain(*results_per_category))
-        headers = ['category', 'AP'] * (num_columns // 2)
+        
+        # Update headers to include AP50
+        headers = ['category', 'AP50:95', 'AP50'] * (num_columns // 3)
+        
         results_2d = itertools.zip_longest(
             *[results_flatten[i::num_columns] for i in range(num_columns)])
+        
         table_data = [headers]
         table_data += [result for result in results_2d]
         table = AsciiTable(table_data)
