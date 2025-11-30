@@ -1,0 +1,16 @@
+metric: COCO
+num_classes: 2
+
+TrainDataset:
+  name: COCODataSet
+  image_dir: train
+  anno_path: train/_annotations.coco.json
+  dataset_dir: dataset/ganoderma
+  data_fields: ['image', 'gt_bbox', 'gt_class', 'is_crowd']
+
+EvalDataset:
+  name: COCODataSet
+  image_dir: test
+  anno_path: test/_annotations.coco.json
+  dataset_dir: dataset/ganoderma
+  allow_empty: true
