@@ -198,9 +198,11 @@ def run(FLAGS, cfg):
     if FLAGS.do_eval:
         dataset = create('TestDataset')()
         # images = dataset.get_images()
-        # FIX: Call get_roidb() to initialize data loading and get the records
-        records = dataset.get_roidb()
-        images = [v['im_file'] for v in records]
+        # FIX 1: Manually trigger the parsing of the JSON file
+        dataset.parse_dataset()
+        
+        # FIX 2: Now 'roidbs' exists, so we can extract the file paths
+        images = [v['im_file'] for v in dataset.roidbs]
     else:
         images = get_test_images(FLAGS.infer_dir, FLAGS.infer_img, FLAGS.infer_list)
 
