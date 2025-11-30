@@ -1,5 +1,5 @@
 _BASE_: [
-  '../datasets/ganoderma-test-as-val.yml',
+  '../datasets/ganoderma_test.yml',
   '../runtime.yml',
   '_base_/optimizer_6x.yml',
   '_base_/rtdetrv3_r50vd.yml',
