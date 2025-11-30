@@ -76,6 +76,14 @@ class COCODataSet(DetDataset):
         self.allow_empty = allow_empty
         self.empty_ratio = empty_ratio
 
+    def set_images(self, images, do_eval=False):
+        """
+        Dummy method to satisfy Trainer.predict requirement.
+        Since COCODataSet loads data from JSON (self.roidbs), 
+        we don't need to manually set the image list.
+        """
+        pass
+        
     def _sample_empty(self, records, num):
         # if empty_ratio is out of [0. ,1.), do not sample the records
         if self.empty_ratio < 0. or self.empty_ratio >= 1.:
