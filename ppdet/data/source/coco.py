@@ -83,6 +83,18 @@ class COCODataSet(DetDataset):
         we don't need to manually set the image list.
         """
         pass
+
+    def get_imid2path(self):
+        """
+        Returns a dictionary mapping integer image IDs to image file paths.
+        Used by trainer.py to map predictions back to filenames.
+        """
+        imid2path = {}
+        for rec in self.roidbs:
+            # We cast to int because im_id is stored as a numpy array in parse_dataset
+            im_id = int(rec['im_id'])
+            imid2path[im_id] = rec['im_file']
+        return imid2path
         
     def _sample_empty(self, records, num):
         # if empty_ratio is out of [0. ,1.), do not sample the records
