@@ -167,8 +167,8 @@ def cocoapi_eval(jsonfile,
             # Append Name, AP, and AP50
             results_per_category.append(
                 (str(nm["name"]), 
-                 '{:0.3f}'.format(float(ap)), 
-                 '{:0.3f}'.format(float(ap_50)))
+                 '{:0.4f}'.format(float(ap)), 
+                 '{:0.4f}'.format(float(ap_50)))
             )
 
             # PR Curve logic (unchanged)
