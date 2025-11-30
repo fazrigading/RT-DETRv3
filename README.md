@@ -1,7 +1,21 @@
-English | [简体中文](README_cn.md)
-
 ## RT-DETRv3: Real-time End-to-End Object Detection with Hierarchical Dense Positive Supervision
+## Enhanced by. Fazri Gading
 
+### New Features:
+- AP50 metrics will also shown using `--classwise` flag while in evaluation mode with `eval.py`.
+- Fixed `infer.py` bug: unable to do `--do-eval True`) for TestDataSet configuration.
+- Fixed `coco.py` bug: correlated with `infer.py` and `trainer.py` (added get_imid2path() and dummy set_images() method).
+- Set `configs/rtdetrv3/rtdetr_reader.yml` configuration to be fit with NVIDIA Tesla T4 by Kaggle Notebook.
+
+### Custom Dataset Example:
+For training:
+- `configs/rtdetrv3/rtdetrv3_r50vd_gano.yml`
+- `configs/dataset/ganoderma.yml`
+For evaluating validation set and test set:
+- `configs/rtdetrv3/rtdetrv3_r50vd_gano_test.yml`
+- `configs/dataset/ganoderma_test.yml`
+
+## Original ReadMe:
 :fire::fire:**[WACV 2025 Oral]** The official implementation of the paper "[RT-DETRv3: Real-time End-to-End Object Detection with Hierarchical Dense Positive Supervision](https://arxiv.org/pdf/2409.08475)". \
 [[`arXiv`](https://arxiv.org/pdf/2409.08475)] 
 ![image](https://github.com/user-attachments/assets/5910d729-cc44-49f4-b404-b6631576930f)
