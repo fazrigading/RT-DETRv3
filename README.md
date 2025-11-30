@@ -12,13 +12,14 @@ If you find this custom dataset fork of RT-DETRv3 useful in your project or rese
 ### New Features 🆕
 - AP50 metrics will also shown using `--classwise` flag while in evaluation mode with `eval.py`.
 - Fixed `infer.py` bug: unable to do `--do-eval True`) for TestDataSet configuration.
-- Fixed `coco.py` bug: correlated with `infer.py` and `trainer.py` (added get_imid2path() and dummy set_images() method).
+- Fixed `coco.py` bug: correlated with `infer.py` and `trainer.py` (added `get_imid2path()` and dummy `set_images()` method).
 - Set `configs/rtdetrv3/rtdetr_reader.yml` configuration to be fit with NVIDIA Tesla T4 by Kaggle Notebook.
 
 ### Custom Dataset Configuration Example 📄
 For training:
 - `configs/rtdetrv3/rtdetrv3_r50vd_gano.yml`
 - `configs/dataset/ganoderma.yml`
+
 For evaluating validation set and test set:
 - `configs/rtdetrv3/rtdetrv3_r50vd_gano_test.yml`
 - `configs/dataset/ganoderma_test.yml`
