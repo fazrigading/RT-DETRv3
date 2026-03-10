@@ -2,7 +2,7 @@
 ### Citation 📑
 If you find this custom dataset fork of RT-DETRv3 useful in your project or research, please consider citing and give this fork a ⭐!
 ```
-@misc{GadingWangXiaLvShi,
+@misc{gading2025rtdetrv3,
     title={fazrigading/RT-DETRv3-CustomDataset: Enhanced RT-DETRv3 Forked Repository for Custom Dataset},
     url={https://github.com/fazrigading/RT-DETRv3-CustomDataset/}, journal={GitHub},
     author={Gading, Fazri Rahmad Nor and Wang, Shuo and Xia, Chunlong and Lv, Feng and Shi, Yifeng}
